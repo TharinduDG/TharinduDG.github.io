@@ -11,10 +11,12 @@ Lets explore what this problem means.
 According to [Wikipedia](https://en.wikipedia.org/wiki/Expression_problem),
 
 ```text
-The goal is to define a datatype by cases, where one can add new cases to the datatype and new functions over the datatype, 
-without recompiling existing code, and while retaining static type safety (e.g., no casts).
-```
+The goal is to define a datatype by cases, where one can add 
+new cases to the datatype and new functions over the datatype, 
+without recompiling existing code, and while retaining static 
+type safety (e.g., no casts).
 
+```
 Lets boil this down. 
 
 We can consider computer programs as a combination of `data` and `operations`. If we want to add new `data` or `operations` we should not touch the existing code.
@@ -25,8 +27,7 @@ in functional programing, data and related operations are completely separated a
 
 In Haskell, the basic programing style is to define your ADTs(Algebraic Data Types) at the beginning of the program. 
 
-{% highlight haskell %}
-    
+```haskell
 module Data where
 
 data Expression = Constant Int | Add Expression Expression
@@ -34,8 +35,7 @@ data Expression = Constant Int | Add Expression Expression
 evaluate :: Expression -> Int
 evaluate (Constant i) = i
 evaluate (Add e1 e2) = result e1 + result e2 
-{% endhighlight %}
-
+```
 
 `Constant` and `Add` are data constructors for type `Expression`
 
@@ -130,7 +130,9 @@ Lets try to add a new data type for `Expression`
     
 module Data where
 
-data Expression = Constant Int | Add Expression Expression | Neg Int
+data Expression = Constant Int 
+                | Add Expression Expression 
+                | Neg Int
 
 evaluate :: Expression -> Int
 evaluate (Constant i) = i
@@ -145,7 +147,8 @@ import Data
 
 prettyPrint :: Expression -> String
 prettyPrint (Constant i) = show i
-prettyPrint (Add l r) = prettyPrint l ++ " + " ++ prettyPrint r
+prettyPrint (Add l r) = prettyPrint l 
+                        ++ " + " ++ prettyPrint r
 prettyPrint (Neg x) = " -(" ++ prettyPrint x ++ ")"
 ```
 
@@ -187,7 +190,8 @@ public class PrettyPrinter implements Visitor<String> {
     }
     
     public String visit(Add that) {
-        return that.left.accept(this) + " + " + that.right.accept(this);
+        return that.left.accept(this) + 
+                " + " + that.right.accept(this);
     }
 }
 
@@ -246,7 +250,8 @@ class Expression x => Evaluate x where
 instance Evaluate Constant where
   evaluate (Constant i) = i
   
-instance (Expression l, Expression r) => Evaluate (Add l r) where
+instance (Expression l, Expression r) => 
+                           Evaluate (Add l r) where
   evaluate (Add l r) = evaluate l + evaluate r
       
 ```
@@ -271,8 +276,10 @@ class Expression x => PrettyPrint x where
 instance PrettyPrint Constant where
   prettyPrint (Constant i) = show i
   
-instance (Expression l, Expression r) => PrettyPrint (Expression (Add l r)) where
-  prettyPrint (Add l r) = prettyPrint l ++ " + " ++ prettyPrint r
+instance (Expression l, Expression r) => 
+              PrettyPrint (Expression (Add l r)) where
+  prettyPrint (Add l r) = prettyPrint l 
+                          ++ " + " ++ prettyPrint r
 
 instance Expression x => PrettyPrint (Neg x) where
   prettyPrint (Neg x) = " -(" ++ prettyPrint x ++ ")"
