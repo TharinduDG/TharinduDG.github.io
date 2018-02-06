@@ -25,7 +25,7 @@ in functional programing, data and related operations are completely separated a
 
 In Haskell, the basic programing style is to define your ADTs(Algebraic Data Types) at the beginning of the program. 
 
-```haskell
+{% highlight haskell %}
     
 module Data where
 
@@ -34,7 +34,8 @@ data Expression = Constant Int | Add Expression Expression
 evaluate :: Expression -> Int
 evaluate (Constant i) = i
 evaluate (Add e1 e2) = result e1 + result e2 
-```
+{% endhighlight %}
+
 
 `Constant` and `Add` are data constructors for type `Expression`
 
