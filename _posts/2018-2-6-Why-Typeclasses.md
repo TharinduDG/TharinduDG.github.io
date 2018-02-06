@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Why Type Classes?
+comments: true
 ---
 
 The concept of Type class is one solution for the expression problem which is a major challenge for programing languages even today.
