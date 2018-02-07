@@ -11,7 +11,7 @@ Lets explore what this problem means.
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Expression_problem),
 
-```
+```text
 The goal is to define a datatype by cases, where one can 
 add new cases to the datatype and new functions over the 
 datatype, without recompiling existing code, and while 
@@ -49,7 +49,6 @@ interface Expression {
 class Constant extends Expression {
     private int value; 
     
-    // getters and setters
     // ..
     
     public int evaluate() {
@@ -60,7 +59,6 @@ class Constant extends Expression {
 class Plus extends Expression {
     private Expression left, right;
     
-    // getters and setters
     // ...
     
     public int evaluate() {
@@ -291,6 +289,7 @@ instance (Expression l, Expression r) =>
 That's it. 
 We have extended both `data` and `operators` without touching old code.
 
+Ideas and comments are welcome. 
 
 
 
