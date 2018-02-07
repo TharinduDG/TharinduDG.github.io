@@ -291,6 +291,6 @@ We have extended both `data` and `operators` without touching old code.
 
 Ideas and comments are welcome. 
 
-
+References: [Dr Ralf Lmmel's Presentation](https://channel9.msdn.com/Shows/Going+Deep/C9-Lectures-Dr-Ralf-Lmmel-Advanced-Functional-Programming-Type-Classes)
 
 
